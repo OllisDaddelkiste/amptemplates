@@ -16,7 +16,7 @@ android {
         versionName = "1.0"
 
         // OpenWeatherMap API Key – hier deinen eigenen Key eintragen
-        buildConfigField("String", "OWM_API_KEY", "\"DEIN_API_KEY_HIER\"")
+        buildConfigField("String", "OWM_API_KEY", "\"f913dec55e380ce161986dc7eeda6562\"")
     }
 
     buildTypes {
