@@ -17,18 +17,13 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Gradle Cache
-        uses: actions/cache@v4
+      - name: Gradle einrichten
+        uses: gradle/actions/setup-gradle@v3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          gradle-version: "8.7"
 
       - name: APK bauen (debug)
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
 
       - name: APK hochladen
         uses: actions/upload-artifact@v4
