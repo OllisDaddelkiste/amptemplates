@@ -3,6 +3,9 @@ name: APK bauen
 on:
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,14 +20,14 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Android SDK einrichten
+        uses: android-actions/setup-android@v3
+
       - name: Gradle herunterladen
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
           unzip -q gradle-8.7-bin.zip
           echo "$PWD/gradle-8.7/bin" >> $GITHUB_PATH
-
-      - name: Android SDK einrichten
-        uses: android-actions/setup-android@v3
 
       - name: APK bauen
         run: gradle assembleDebug --no-daemon
